@@ -4,8 +4,11 @@ import akka.actor.{ActorRef, Props, ActorLogging, Actor}
 
 object SimManager {
 
-  case object CreateFox
-  case object CreateRabbit
+
+  case object CreateWarren
+//  case object CreateDen
+  case object Multiply
+  
 
   def props: Props = {
 
@@ -18,17 +21,32 @@ class SimManager extends Actor with ActorLogging {
 
   import SimManager._
 
+  private val den = createDen()
+  
   override def receive: Receive = {
-    case CreateRabbit =>
-      createRabbit()
-    case CreateFox =>
-      createFox()
+    case CreateWarren =>
+      createWarren()
+
+//    case CreateDen =>
+//      createDen()
+    
+    case Multiply =>
+      multiply()
   }
 
-  protected def createRabbit(): ActorRef =
-    context.actorOf(Rabbit.props)
+  protected def createWarren(): ActorRef =
+    context.actorOf(Warren.props(3), "Warren")
+    
+  protected def createDen(): ActorRef =
+    context.actorOf(Den.props, "Den")
+  
+    protected def multiply(): Unit = { 
+      den ! Den.Breed
 
-  protected def createFox(): ActorRef =
-    context.actorOf(Fox.props)
+      den ! Den.ChangeBreedRate(2.0)
+      den ! Den.Breed
 
+//      Warren.rabbitsBreed
+  }
+    
 }
