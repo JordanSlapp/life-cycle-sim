@@ -15,11 +15,12 @@ object Fox {
 
 class Fox extends Actor with ActorLogging{
 
-  println("Fox Created")
+  log.info("Fox Created")
 
   import Fox._
 
   override def receive: Receive = {
+    
     case _ => println("TODO")
   }
 

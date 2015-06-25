@@ -3,6 +3,7 @@ package controllers
 import play.api.mvc._
 import akka.actor.{ActorRef, ActorSystem}
 import actors.SimManager
+import actors.Den
 
 class Application extends Controller {
 
@@ -12,8 +13,10 @@ class Application extends Controller {
     val system = ActorSystem("life-cycle-sim-system")
     val simMan = system.actorOf(SimManager.props, "SimManager")
 
-    simMan ! SimManager.CreateFox
-    simMan ! SimManager.CreateRabbit
+//    simMan ! SimManager.CreateDen
+    simMan ! SimManager.CreateWarren
+    simMan ! SimManager.Multiply
+  
 
     Ok(views.html.index())
   }
