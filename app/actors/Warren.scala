@@ -25,7 +25,7 @@ class Warren(population: Int, breedRate: Double, deathRate: Double) extends Acto
 
   println("Warren Created")
 
-  // un comment to have rabbits breed
+  // un comment to have rabbits breed also un comment the scheduler stop!
 
   //val schedulerBreed = context.system.scheduler.schedule(1 seconds, 10 seconds, self, Warren.RabbitsBreed)
   //val schedulerDeath = context.system.scheduler.schedule(10 seconds, 15 seconds, self, Warren.RabbitDie)
@@ -65,8 +65,8 @@ class Warren(population: Int, breedRate: Double, deathRate: Double) extends Acto
 
 
   override def postStop(): Unit = {
-    schedulerBreed.cancel()
-    schedulerDeath.cancel()
+//    schedulerBreed.cancel()
+//    schedulerDeath.cancel()
   }
 
 }
