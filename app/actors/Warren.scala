@@ -25,8 +25,10 @@ class Warren(population: Int, breedRate: Double, deathRate: Double) extends Acto
 
   println("Warren Created")
 
-  val schedulerBreed = context.system.scheduler.schedule(10 minutes, 10 seconds, self, Warren.RabbitsBreed)
-  val schedulerDeath = context.system.scheduler.schedule(10 seconds, 15 seconds, self, Warren.RabbitDie)
+  // un comment to have rabbits breed
+
+  //val schedulerBreed = context.system.scheduler.schedule(1 seconds, 10 seconds, self, Warren.RabbitsBreed)
+  //val schedulerDeath = context.system.scheduler.schedule(10 seconds, 15 seconds, self, Warren.RabbitDie)
 
 
   private var rabbits: List[ActorRef] = List.empty[ActorRef]
