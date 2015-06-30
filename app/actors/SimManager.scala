@@ -5,7 +5,7 @@ import akka.actor.{ActorRef, Props, ActorLogging, Actor}
 object SimManager {
 
   case object CreateFox
-  case object CreateRabbit
+  case object CreateWarren
 
   def props: Props = {
 
@@ -19,14 +19,14 @@ class SimManager extends Actor with ActorLogging {
   import SimManager._
 
   override def receive: Receive = {
-    case CreateRabbit =>
-      createRabbit()
+    case CreateWarren =>
+      createWarren()
     case CreateFox =>
       createFox()
   }
 
-  protected def createRabbit(): ActorRef =
-    context.actorOf(Rabbit.props)
+  protected def createWarren(): ActorRef =
+    context.actorOf(Warren.props(4), "Warren")
 
   protected def createFox(): ActorRef =
     context.actorOf(Fox.props)

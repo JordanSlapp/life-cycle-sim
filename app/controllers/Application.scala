@@ -13,7 +13,7 @@ class Application extends Controller {
     val simMan = system.actorOf(SimManager.props, "SimManager")
 
     simMan ! SimManager.CreateFox
-    simMan ! SimManager.CreateRabbit
+    simMan ! SimManager.CreateWarren
 
     Ok(views.html.index())
   }
